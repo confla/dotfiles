@@ -1,8 +1,14 @@
+set encoding=utf-8
+set backspace=indent,eol,start
 filetype plugin indent on
 syntax on	
 inoremap <c-w> <c-g>u<c-w>
 set tabstop=4 shiftwidth=4 expandtab
 set term=xterm
+au bufread * highlight OverLength ctermbg=red
+au bufread * match OverLength /\%80v./
+set visualbell
+set background=dark
 
 nnoremap l :wincmd l<CR>
 inoremap l <ESC>:wincmd l<CR>i
