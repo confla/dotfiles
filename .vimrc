@@ -40,55 +40,59 @@ set statusline+=%1*%<\ %.60F\ %y\ %m        " filename,filetype,modified flag
 set statusline+=%=                          " right align remainder
 set statusline+=%0*\ \ [%n]%6l,%c%6p%%      " file position
 
-" vim-plug: Vim plugin manager
-" :PlugInstall to install plugins
-" :PlugStatus to show status of current plugins
-" :PlugUpdate to update plugins
-" :PlugDiff to show differences since last update
-" :PlugClean to remove undeclared plugins
-call plug#begin('~/.vim/plugged')
+" Check what machine is being run
+let machine_check = system('echo $HOST | grep -c mac')
+if machine_check == 1
+    " Shortcuts without tmux and NERDTree
+    nnoremap <silent> h :wincmd h<CR>
+    inoremap <silent> h <ESC>:wincmd h<CR>i
+    nnoremap <silent> j :wincmd j<CR>
+    inoremap <silent> j <ESC>:wincmd j<CR>i
+    nnoremap <silent> k :wincmd k<CR>
+    inoremap <silent> k <ESC>:wincmd k<CR>i
+    nnoremap <silent> l :wincmd l<CR>
+    inoremap <silent> l <ESC>:wincmd l<CR>i
+else
+    " vim-plug: Vim plugin manager
+    " :PlugInstall to install plugins
+    " :PlugStatus to show status of current plugins
+    " :PlugUpdate to update plugins
+    " :PlugDiff to show differences since last update
+    " :PlugClean to remove undeclared plugins
+    call plug#begin('~/.vim/plugged')
 
-" Live linting
-Plug 'w0rp/ale'
+    " Live linting
+    Plug 'w0rp/ale'
 
-" File directory
-Plug 'scrooloose/nerdtree'
+    " File directory
+    Plug 'scrooloose/nerdtree'
 
-" Tmux navigation
-Plug 'christoomey/vim-tmux-navigator'
+    " Tmux navigation
+    Plug 'christoomey/vim-tmux-navigator'
 
-call plug#end()
+    call plug#end()
 
-" NERDTree config
-let NERDTreeStatusline="%t"
-let NERDTreeShowHidden=1
-let NERDTreeNotificationThreshold=500
-let NERDTreeDirArrowExpandable = '+'
-let NERDTreeDirArrowCollapsible = '-'
-au vimenter * NERDTree
-au StdinReadPre * let s:std_in=1
-au vimenter * if !(argc() == 0 && !exists("s:std_in")) | wincmd p | endif
-au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-nnoremap <expr> 1 (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1) ? '<c-w>t' : ':NERDTree<CR>'
+    " NERDTree config
+    let NERDTreeStatusline="%t"
+    let NERDTreeShowHidden=1
+    let NERDTreeNotificationThreshold=500
+    let NERDTreeDirArrowExpandable = '+'
+    let NERDTreeDirArrowCollapsible = '-'
+    au vimenter * NERDTree
+    au StdinReadPre * let s:std_in=1
+    au vimenter * if !(argc() == 0 && !exists("s:std_in")) | wincmd p | endif
+    au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    nnoremap <expr> 1 (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1) ? '<c-w>t' : ':NERDTree<CR>'
 
-" vim-tum-navigator config
-" If this is slow to go out of vim into tmux, look at .cshrc
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> h :TmuxNavigateLeft<CR>
-inoremap <silent> h <ESC>:TmuxNavigateLeft<CR>i
-nnoremap <silent> j :TmuxNavigateDown<CR>
-inoremap <silent> j <ESC>:TmuxNavigateDown<CR>i
-nnoremap <silent> k :TmuxNavigateUp<CR>
-inoremap <silent> k <ESC>:TmuxNavigateUp<CR>i
-nnoremap <silent> l :TmuxNavigateRight<CR>
-inoremap <silent> l <ESC>:TmuxNavigateRight<CR>i
-
-" Shortcuts without tmux
-"nnoremap <silent> h :wincmd h<CR>
-"inoremap <silent> h <ESC>:wincmd h<CR>i
-"nnoremap <silent> j :wincmd j<CR>
-"inoremap <silent> j <ESC>:wincmd j<CR>i
-"nnoremap <silent> k :wincmd k<CR>
-"inoremap <silent> k <ESC>:wincmd k<CR>i
-"nnoremap <silent> l :wincmd l<CR>
-"inoremap <silent> l <ESC>:wincmd l<CR>i
+    " vim-tum-navigator config
+    " If this is slow to go out of vim into tmux, look at .cshrc
+    let g:tmux_navigator_no_mappings = 1
+    nnoremap <silent> h :TmuxNavigateLeft<CR>
+    inoremap <silent> h <ESC>:TmuxNavigateLeft<CR>i
+    nnoremap <silent> j :TmuxNavigateDown<CR>
+    inoremap <silent> j <ESC>:TmuxNavigateDown<CR>i
+    nnoremap <silent> k :TmuxNavigateUp<CR>
+    inoremap <silent> k <ESC>:TmuxNavigateUp<CR>i
+    nnoremap <silent> l :TmuxNavigateRight<CR>
+    inoremap <silent> l <ESC>:TmuxNavigateRight<CR>i
+endif
