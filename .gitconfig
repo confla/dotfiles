@@ -1,0 +1,4 @@
+[alias]
+	lg = "!f() { \
+        git log --oneline --graph --decorate=full -${1-\\127}; \
+        }; f"
