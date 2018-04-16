@@ -41,9 +41,9 @@ set statusline+=%=                          " right align remainder
 set statusline+=%0*\ \ [%n]%6l,%c%6p%%      " file position
 
 " Check what machine is being run
-let machine_tcsh_check = system('echo $HOST | grep -c mac')
-let machine_bash_check = system('echo $HOSTNAME | grep -c mac')
-if (machine_tcsh_check == 1 || machine_bash_check == 1)
+let machine_tcsh_check = system('echo $HOST | grep -ce mac -e E113')
+let machine_bash_check = system('echo $HOSTNAME | grep -ce mac -e E113')
+if (machine_tcsh_check >= 1 || machine_bash_check >= 1)
     " Shortcuts without tmux and NERDTree
     nnoremap <silent> h :wincmd h<CR>
     inoremap <silent> h <ESC>:wincmd h<CR>i
