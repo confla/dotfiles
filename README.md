@@ -1,12 +1,21 @@
-# dotfiles
+dotfiles
+========
 Core sections of my dotfiles
 
-1) Clone repository into $HOME directory
+Instructions
+------------
 
-2) .cshrc, .bashrc, .tmux.conf, .vimrc
-These configurations can be added to a new machine by adding "source ~/dotfiles/\<filename\>" to ~/\<filename\>
-
-3) .gitconfig
-This configuration can be added to a new machine by adding the lines below to ~/.gitconfig:
-[include]
-    path = ~/dotfiles/.gitconfig
+1) Clone repository into `$HOME` directory
+2) _.cshrc, .bashrc, .tmux.conf, .vimrc_
+    These configurations can be added to a new machine by adding:
+    ```bash
+    source ~/dotfiles/<filename>
+    ```
+    to `~/<filename>`
+3) _.gitconfig_
+    This configuration can be added to a new machine by adding the lines below
+    to ~/.gitconfig:
+    ```git
+    [include]
+        path = ~/dotfiles/.gitconfig
+    ```
