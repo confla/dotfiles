@@ -7,6 +7,10 @@ set bell-style visible
 export PROMPT_DIRTRIM=3
 export PS1='\[\e[1m\]\h\[\e[0m\]_bash: \[\e[0;37m\]\w\[\e[0m\] > '
 
+# Set colours to be always on
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
 # Refresh env vars for smooth X11 forwarding in tmux
 function refresh()
 {
