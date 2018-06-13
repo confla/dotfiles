@@ -1,12 +1,12 @@
 " General settings
-set encoding=utf-8
+" set encoding=utf-8
 inoremap <c-w> <c-g>u<c-w>
 set backspace=indent,eol,start
 set tabstop=4 shiftwidth=4 expandtab
 filetype plugin indent on
 syntax on
 set term=xterm
-set visualbell
+" set visualbell
 set background=dark
 hi Visual cterm=reverse ctermbg=NONE
 set t_Co=256
