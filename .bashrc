@@ -4,8 +4,12 @@ bind '"\ep":history-search-backward'
 set bell-style visible
 
 # Custom prompt
+BOLD="\[\033[1m\]"
+BOLD_GREEN="\[\033[1;32m\]"
+LIGHT_GRAY="\[\033[0;37m\]"
+NO_COLOUR="\[\033[0m\]"
 export PROMPT_DIRTRIM=3
-export PS1='\[\e[1m\]\h\[\e[0m\]_bash: \[\e[0;37m\]\w\[\e[0m\] > '
+export PS1="$BOLD\h${NO_COLOUR}_bash: $LIGHT_GRAY\w$NO_COLOUR > "
 
 # Set colours to be always on
 machine=$(echo $HOST $HOSTNAME | grep -c mac)
