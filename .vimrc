@@ -3,6 +3,8 @@
 inoremap <c-w> <c-g>u<c-w>
 set backspace=indent,eol,start
 set tabstop=4 shiftwidth=4 expandtab
+au FileType systemverilog setlocal tabstop=2 shiftwidth=2
+au FileType verilog setlocal tabstop=2 shiftwidth=2
 filetype plugin indent on
 syntax on
 set term=xterm
