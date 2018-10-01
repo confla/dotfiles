@@ -21,6 +21,7 @@ else
     alias which='alias | which --tty-only --read-alias --show-dot --show-tilde'
 fi
 alias grep='grep --color=auto'
+alias ll='ls -l'
 
 # Refresh env vars for smooth X11 forwarding in tmux
 function refresh()
