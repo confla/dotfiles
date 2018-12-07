@@ -1,7 +1,7 @@
 # Custom bash environment
 bind '"\t":menu-complete'
 bind '"\ep":history-search-backward'
-set bell-style visible
+#set bell-style visible
 
 # Custom prompt
 BOLD="\[\033[1m\]"
