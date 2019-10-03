@@ -8,7 +8,7 @@ au FileType verilog setlocal tabstop=2 shiftwidth=2
 filetype plugin indent on
 syntax on
 set term=xterm
-" set visualbell
+set nowrap
 set background=dark
 hi Visual cterm=reverse ctermbg=NONE
 set t_Co=256
