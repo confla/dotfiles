@@ -1,10 +1,6 @@
 " General settings
-" set encoding=utf-8
-inoremap <c-w> <c-g>u<c-w>
 set backspace=indent,eol,start
-set tabstop=4 shiftwidth=4 expandtab
-au FileType systemverilog setlocal tabstop=2 shiftwidth=2
-au FileType verilog setlocal tabstop=2 shiftwidth=2
+set tabstop=2 shiftwidth=2 expandtab
 filetype plugin indent on
 syntax on
 set term=xterm
@@ -22,25 +18,11 @@ au VimEnter,WinEnter * match issue /\t\|\s\+$\|\%80v./
 set ttymouse=xterm2
 set mouse=a
 
-" Autocomplete in Vim
-set complete=.,w,b,u,t
-set completeopt=menuone,noinsert
-highlight Pmenu ctermbg=gray ctermfg=black
-highlight PmenuSel ctermbg=green ctermfg=black
-
 " Statusline colour change with mode change
 hi statusline ctermfg=green
 hi User1 cterm=inverse,bold
 au InsertEnter * hi statusline ctermfg=red
 au InsertLeave * hi statusline ctermfg=green
-
-" Custom statusline
-set laststatus=2                            " always show statusbar
-set statusline=
-set statusline+=\ \ %-3.5{toupper(mode())}  " current mode
-set statusline+=%1*%<\ %.60F\ %y\ %m        " filename,filetype,modified flag
-set statusline+=%=                          " right align remainder
-set statusline+=%0*\ \ [%n]%6l,%c%6p%%      " file position
 
 " Check what machine is being run
 let machine_tcsh_check = system('echo $HOST | grep -ce E113')
@@ -73,6 +55,9 @@ else
     " Tmux navigation
     Plug 'christoomey/vim-tmux-navigator'
 
+    " Fuzzy search
+    Plug 'ctrlpvim/ctrlp.vim'
+
     call plug#end()
 
     " NERDTree config
@@ -81,7 +66,6 @@ else
     let NERDTreeNotificationThreshold=500
     let NERDTreeDirArrowExpandable = '+'
     let NERDTreeDirArrowCollapsible = '-'
-    au vimenter * NERDTree
     au StdinReadPre * let s:std_in=1
     au vimenter * if !(argc() == 0 && !exists("s:std_in")) | wincmd p | endif
     au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -98,4 +82,7 @@ else
     inoremap <silent> k <ESC>:TmuxNavigateUp<CR>i
     nnoremap <silent> l :TmuxNavigateRight<CR>
     inoremap <silent> l <ESC>:TmuxNavigateRight<CR>i
+
+    " ctrlp ignore files in .gitignore
+    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 endif
