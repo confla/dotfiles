@@ -8,8 +8,9 @@ BOLD="\[\033[1m\]"
 BOLD_GREEN="\[\033[1;32m\]"
 LIGHT_GRAY="\[\033[0;37m\]"
 NO_COLOUR="\[\033[0m\]"
+HOSTNAME_TRIMMED=$(echo $HOSTNAME | sed 's/\.arm\.com//')
 export PROMPT_DIRTRIM=3
-export PS1="$BOLD\h${NO_COLOUR}_bash: $LIGHT_GRAY\w$NO_COLOUR > "
+export PS1="$BOLD$HOSTNAME_TRIMMED${NO_COLOUR}: \w > "
 
 # Set colours to be always on
 machine=$(echo $HOST $HOSTNAME | grep -c mac)
