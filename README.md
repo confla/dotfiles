@@ -19,3 +19,5 @@ Instructions
     [include]
         path = ~/dotfiles/.gitconfig
     ```
+4) _.Xdefaults, .inputrc_\
+    Copy these files to ~/ (or amend them if they exist already)
